@@ -1,0 +1,17 @@
+imports
+
+useEffect(() => {
+    Promise.all([
+      api.get("users/tgmarinho"),
+      api.get("users/diego3g"),
+      api.get("users/vinifraga")
+    ]).then((response) => {
+      for (const res of response) {
+        const {
+          data: { login, bio }
+        } = res;
+
+        setUsers((state) => [...state, { login, bio }]);
+      }
+    });
+  }, []);

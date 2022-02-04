@@ -1,7 +1,8 @@
 /** @format */
 
 import { Link } from 'react-router-dom';
-import Logo from '../../../assets/img/logo_m.svg'
+import Logo from 'assets/img/logo_m.svg';
+
 
 const NavBar = () => {
 	return (
@@ -9,9 +10,8 @@ const NavBar = () => {
 			<div className='container'>
 				<nav className='my-2 my-md-0 mr-md-3'>
 					<Link to='/home'>
-						<img src={Logo} alt='DevSuperior' width='35' />
-					</Link>
-				</nav>
+						<img src={Logo} alt='logoM' width='35' />
+					</Link>				</nav>
 			</div>
 		</div>
 	);

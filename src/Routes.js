@@ -3,13 +3,13 @@
 import Dashboard from 'pages/components/Dashboard';
 import Home from 'pages/Home';
 import React, { Fragment } from 'react';
+
 import SignUp from './pages/SignUp';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import SignIn from './pages/SignIn';
 import { isAuthenticated } from './services/auth';
 import { ModalContainer } from 'react-router-modal';
 import 'react-router-modal/css/react-router-modal.css';
-
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
 	<Route
@@ -32,6 +32,8 @@ const Routes = () => (
 				<Route path='/signup' component={SignUp} />
 				<PrivateRoute path='/home' component={Home} />
 				<PrivateRoute exact path='/dashboard' component={Dashboard} />
+				{/* <PrivateRoute path='/teste' component={Teste} /> */}
+
 				<Route path='*' component={() => <h1>Page not found</h1>} />
 			</Switch>
 			<ModalContainer />
@@ -40,5 +42,3 @@ const Routes = () => (
 );
 
 export default Routes;
-
-

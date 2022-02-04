@@ -50,6 +50,6 @@ export type AssetCvss = {
 };
 
 export type AssetDashboardCard = {
-	asset_count: string;
-	vulnerable_asset_count: string;
+	asset_count: number;
+	vulnerable_asset_count: number;
 };
