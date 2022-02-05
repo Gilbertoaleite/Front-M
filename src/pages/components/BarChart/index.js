@@ -19,7 +19,7 @@ export default function BarChart() {
 
 	useEffect(() => {
 		Promise.all([
-			api.get('dashboard/cards/asset'),
+			api.get('api/dashboard/cards/asset'),
 			// api.get('assets'),
 			// api.get('api/dashboard/vinifraga'),
 		]).then((response) => {

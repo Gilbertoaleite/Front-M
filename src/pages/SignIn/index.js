@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { Component } from 'react';
-import {  withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import Logo from '../../assets/img/logo_m.svg';
 import api from '../../services/api';
@@ -23,7 +23,7 @@ class SignIn extends Component {
 			this.setState({ error: 'Preencha e-mail e senha para continuar!' });
 		} else {
 			try {
-				const response = await api.post('/api-token-auth/', {
+				const response = await api.post('api-token-auth/', {
 					username,
 					password,
 				});
@@ -31,8 +31,7 @@ class SignIn extends Component {
 				this.props.history.push('/home');
 			} catch (err) {
 				this.setState({
-					error:
-						'Houve um problema com o login, verifique suas credenciais.',
+					error: 'Houve um problema com o login, verifique suas credenciais.',
 				});
 			}
 		}
@@ -57,7 +56,6 @@ class SignIn extends Component {
 					/>
 					<button type='submit'>Entrar</button>
 					<hr />
-					
 				</Form>
 			</Container>
 		);
