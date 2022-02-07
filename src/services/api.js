@@ -16,7 +16,7 @@ api.interceptors.request.use(async (config) => {
 	}
 	return config;
 });
-export const ApiService = axios.create({
+export default api({
 	baseURL: api,
 	headers: {
 		'Content-Type': 'application/json',
