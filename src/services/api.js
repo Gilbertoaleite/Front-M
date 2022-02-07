@@ -1,19 +1,24 @@
 /** @format */
-import 'dotenv/config'; 
+
+import 'dotenv/config';
 import axios from 'axios';
 import { getToken } from './auth';
 
 const api = axios.create({
-	baseURL: process.env.REACT_APP_BACKEND_URL})
-	require('dotenv').config();
-	
+	baseURL: process.env.REACT_APP_BACKEND_URL,
+});
+require('dotenv').config();
 
 api.interceptors.request.use(async (config) => {
-	const token =    getToken();
+	const token = getToken();
 	if (token) {
 		config.headers.authorization = `Token ${token}`;
 	}
 	return config;
 });
-
-export default api;
+export const ApiService = axios.create({
+	baseURL: api,
+	headers: {
+		'Content-Type': 'application/json',
+	},
+});
