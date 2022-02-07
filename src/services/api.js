@@ -16,9 +16,5 @@ api.interceptors.request.use(async (config) => {
 	}
 	return config;
 });
-export default api({
-	baseURL: api,
-	headers: {
-		'Content-Type': 'application/json',
-	},
-});
+export default api;
+
