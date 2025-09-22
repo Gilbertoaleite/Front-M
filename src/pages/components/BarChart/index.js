@@ -1,39 +1,40 @@
 /** @format */
 
-// // import axios from 'axios';
-// import { useEffect, useState, setAsset } from 'react';
-// import Chart from 'react-apexcharts';
-// // import { AssetDashboardCard } from 'types/list';
-// // import { round } from 'utils/format';
-// import api from 'services/api';
-
 import React, { useEffect, useState } from 'react';
-
 import api from 'services/api';
+import { mockDashboardAPI } from 'services/mockDashboard';
 
 
 
 export default function BarChart() {
-	
+
 	const [id, setAsset] = useState([]); //lista asset
 
 	useEffect(() => {
-		Promise.all([
-			api.get('api/dashboard/cards/asset'),
-			// api.get('assets'),
-			// api.get('api/dashboard/vinifraga'),
-		]).then((response) => {
-			for (const res of response) {
-				const {
-					data: { asset_count, vulnerable_asset_count },
-				} = res;
+		const fetchData = async () => {
+			try {
+				// Tenta usar a API real
+				const response = await api.get('api/dashboard/cards/asset');
+				const { asset_count, vulnerable_asset_count } = response.data;
 
-				setAsset((state) => [
-					...state,
-					{ asset_count, vulnerable_asset_count },
-				]);
+				setAsset([{ asset_count, vulnerable_asset_count }]);
+			} catch (error) {
+				console.log('API não disponível, usando dados mock para dashboard');
+				// Fallback para dados mock
+				try {
+					const mockResponse = await mockDashboardAPI.getAssets();
+					const { asset_count, vulnerable_asset_count } = mockResponse.data;
+
+					setAsset([{ asset_count, vulnerable_asset_count }]);
+				} catch (mockError) {
+					console.error('Erro ao carregar dados mock:', mockError);
+					// Dados padrão em caso de erro
+					setAsset([{ asset_count: 0, vulnerable_asset_count: 0 }]);
+				}
 			}
-		});
+		};
+
+		fetchData();
 	}, []);
 
 	return (

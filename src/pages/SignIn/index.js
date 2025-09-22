@@ -1,65 +1,90 @@
 /** @format */
 
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Logo from '../../assets/img/logo_m.svg';
 import api from '../../services/api';
 import { login } from '../../services/auth';
+import { mockAuthenticate } from '../../services/mockAuth';
 
 import { Form, Container } from './styles';
 
-class SignIn extends Component {
-	state = {
-		username: '',
-		password: '',
-		error: '',
-	};
+const SignIn = () => {
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	const [error, setError] = useState('');
+	const navigate = useNavigate();
 
-	handleSignIn = async (e) => {
+	const handleSignIn = async (e) => {
 		e.preventDefault();
-		const { username, password } = this.state;
 		if (!username || !password) {
-			this.setState({ error: 'Preencha e-mail e senha para continuar!' });
+			setError('Preencha e-mail e senha para continuar!');
 		} else {
 			try {
-				const response = await api.post('api-token-auth/', {
-					username,
-					password,
-				});
+				// Tenta autenticar com a API real primeiro
+				let response;
+				try {
+					response = await api.post('api-token-auth/', {
+						username,
+						password,
+					});
+				} catch (apiError) {
+					console.log('API não disponível, usando autenticação mock');
+					// Se a API não estiver disponível, usa autenticação mock
+					response = await mockAuthenticate(username, password);
+				}
+
 				login(response.data.token);
-				this.props.history.push('/home');
+				navigate('/home');
 			} catch (err) {
-				this.setState({
-					error: 'Houve um problema com o login, verifique suas credenciais.',
-				});
+				setError('Houve um problema com o login, verifique suas credenciais.');
 			}
 		}
 	};
 
-	render() {
-		return (
-			<Container>
-				<Form onSubmit={this.handleSignIn}>
-					<img src={Logo} alt='logo M' />
-					{this.state.error && <p>{this.state.error}</p>}
+	return (
+		<Container>
+			<Form onSubmit={handleSignIn}>
+				<img src={Logo} alt='logo M' />
+				{error && <p>{error}</p>}
 
-					<input
-						type='text'
-						placeholder='Nome de usuário'
-						onChange={(e) => this.setState({ username: e.target.value })}
-					/>
-					<input
-						type='password'
-						placeholder='Senha'
-						onChange={(e) => this.setState({ password: e.target.value })}
-					/>
-					<button type='submit'>Entrar</button>
-					<hr />
-				</Form>
-			</Container>
-		);
-	}
-}
+				<input
+					type='text'
+					placeholder='Nome de usuário'
+					onChange={(e) => setUsername(e.target.value)}
+				/>
+				<input
+					type='password'
+					placeholder='Senha'
+					onChange={(e) => setPassword(e.target.value)}
+				/>
+				<button type='submit'>Entrar</button>
+				<hr />
 
-export default withRouter(SignIn);
+				{/* Informações para teste */}
+				<div style={{
+					backgroundColor: '#f8f9fa',
+					padding: '15px',
+					borderRadius: '5px',
+					marginTop: '20px',
+					border: '1px solid #dee2e6'
+				}}>
+					<h4 style={{ color: '#495057', fontSize: '14px', marginBottom: '10px' }}>
+						👤 Usuários para Teste:
+					</h4>
+					<div style={{ fontSize: '12px', color: '#6c757d' }}>
+						<p><strong>Administrador:</strong> admin / admin123</p>
+						<p><strong>Teste:</strong> teste / 123456</p>
+						<p><strong>Demo:</strong> demo / demo123</p>
+					</div>
+					<small style={{ color: '#868e96', fontSize: '11px' }}>
+						* Use estas credenciais quando o backend não estiver disponível
+					</small>
+				</div>
+			</Form>
+		</Container>
+	);
+};
+
+export default SignIn;

@@ -1,13 +1,11 @@
 /** @format */
 
-import 'dotenv/config';
 import axios from 'axios';
 import { getToken } from './auth';
 
 const api = axios.create({
 	baseURL: process.env.REACT_APP_BACKEND_URL,
 });
-require('dotenv').config();
 
 api.interceptors.request.use(async (config) => {
 	const token = getToken();

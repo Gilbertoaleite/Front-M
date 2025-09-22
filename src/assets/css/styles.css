@@ -50,6 +50,69 @@ body {
 	color: #2e2e2e;
 }
 
+/* Melhorias de responsividade global */
+@media (max-width: 576px) {
+	.container {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+	
+	h1 {
+		font-size: 1.5rem;
+	}
+	
+	h2 {
+		font-size: 1.25rem;
+	}
+	
+	h5 {
+		font-size: 1rem;
+	}
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+	.container {
+		max-width: 100%;
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+}
+
+/* Utilitários responsivos */
+.text-responsive {
+	font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.title-responsive {
+	font-size: clamp(1.25rem, 4vw, 2rem);
+}
+
+.subtitle-responsive {
+	font-size: clamp(1rem, 3vw, 1.5rem);
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* Focus visível para navegação por teclado */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+}
+
+/* Scroll suave */
+html {
+	scroll-behavior: smooth;
+}
+
 #title {
 	color: var(--color-primary);
 }

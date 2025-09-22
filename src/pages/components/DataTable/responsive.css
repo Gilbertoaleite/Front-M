@@ -1,0 +1,212 @@
+/* Responsividade para DataTable */
+
+/* Mobile First - Layout em Cards */
+@media (max-width: 768px) {
+    .data-table-container {
+        padding: 0;
+    }
+
+    .table-responsive {
+        border: none;
+        overflow: visible;
+    }
+
+    .data-table-desktop {
+        display: none;
+    }
+
+    .data-table-mobile {
+        display: block;
+    }
+
+    .asset-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-left: 4px solid var(--color-primary, #ff8400);
+    }
+
+    .asset-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .asset-card-title {
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    .asset-card-risk {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .risk-1 { background-color: #d4edda; color: #155724; }
+    .risk-2 { background-color: #fff3cd; color: #856404; }
+    .risk-3 { background-color: #f8d7da; color: #721c24; }
+    .risk-4 { background-color: #f5c6cb; color: #721c24; }
+
+    .asset-card-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .asset-card-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .asset-card-label {
+        font-weight: 600;
+        color: #666;
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .asset-card-value {
+        color: #333;
+    }
+
+    .asset-card-footer {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: #666;
+    }
+
+    .vuln-count {
+        font-weight: 600;
+        color: #dc3545;
+    }
+
+    .cvss-score {
+        font-weight: 600;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        color: #495057;
+    }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .data-table-mobile {
+        display: none;
+    }
+
+    .data-table-desktop {
+        display: block;
+    }
+
+    /* Oculta algumas colunas menos importantes */
+    .hide-tablet {
+        display: none;
+    }
+
+    .table th, .table td {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+    .data-table-mobile {
+        display: none;
+    }
+
+    .data-table-desktop {
+        display: block;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+
+/* Scroll horizontal suave para todas as telas quando necessário */
+.table-responsive {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Melhorias gerais de UX */
+.table th {
+    background-color: #f8f9fa;
+    border-top: none;
+    font-weight: 600;
+    color: #495057;
+    white-space: nowrap;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.02);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 132, 0, 0.1);
+}
+
+/* Indicadores de risco na tabela desktop */
+.risk-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.risk-indicator.risk-1 { background-color: #28a745; }
+.risk-indicator.risk-2 { background-color: #ffc107; }
+.risk-indicator.risk-3 { background-color: #fd7e14; }
+.risk-indicator.risk-4 { background-color: #dc3545; }
+
+/* Responsividade da paginação */
+@media (max-width: 576px) {
+    .pagination {
+        font-size: 0.875rem;
+    }
+    
+    .page-link {
+        padding: 0.375rem 0.5rem;
+    }
+}
+
+/* Espaçamento diferenciado para paginações */
+.pagination-top {
+    margin-bottom: 1.5rem;
+}
+
+.pagination-bottom {
+    margin-top: 1.5rem;
+    border-top: 1px solid #dee2e6;
+    padding-top: 1rem;
+}
+
+/* Em mobile, esconder a paginação superior para economizar espaço */
+@media (max-width: 768px) {
+    .pagination-top {
+        display: none;
+    }
+    
+    .pagination-bottom {
+        margin-top: 1rem;
+        border-top: 2px solid var(--color-primary, #ff8400);
+        padding-top: 1rem;
+    }
+}
