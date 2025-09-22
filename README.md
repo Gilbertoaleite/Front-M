@@ -5,6 +5,8 @@
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-purple.svg)
 ![Status](https://img.shields.io/badge/Status-Produção-brightgreen.svg)
 
+🌐 **Demo Online:** [https://front-5acc7elxl-gilbertoaleites-projects.vercel.app](https://front-5acc7elxl-gilbertoaleites-projects.vercel.app)
+
 Um dashboard moderno e responsivo para visualização e gerenciamento de vulnerabilidades de segurança em ativos de rede.
 
 ## 📋 Índice
@@ -12,115 +14,32 @@ Um dashboard moderno e responsivo para visualização e gerenciamento de vulnera
 - [Visão Geral](#visão-geral)
 - [Tecnologias](#tecnologias)
 - [Funcionalidades](#funcionalidades)
-- [Melhorias Implementadas](#melhorias-implementadas)
 - [Instalação](#instalação)
 - [Configuração](#configuração)
-- [Desenvolvimento Offline](#desenvolvimento-offline)
-- [Responsividade](#responsividade)
-- [API Mock](#api-mock)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Scripts Disponíveis](#scripts-disponíveis)
 - [Deploy](#deploy)
 
 ## 🎯 Visão Geral
 
-Este projeto é um dashboard completo para monitoramento de vulnerabilidades em ativos de rede, oferecendo visualizações interativas, tabelas de dados e uma experiência totalmente responsiva. O sistema inclui autenticação, gráficos dinâmicos e um robusto sistema de fallback para desenvolvimento offline.
+Dashboard completo para monitoramento de vulnerabilidades em ativos de rede, oferecendo visualizações interativas, tabelas de dados e experiência totalmente responsiva. O sistema inclui autenticação, gráficos dinâmicos e sistema de fallback para desenvolvimento offline.
 
 ## 🚀 Tecnologias
 
-### Core
-- **React 18.2.0** - Biblioteca JavaScript para interfaces
-- **TypeScript 4.9.5** - Tipagem estática
-- **React Router 6.x** - Roteamento SPA
-- **React Scripts 5.0.1** - Toolchain de build
+**Core:**
+- React 18.2.0, TypeScript 4.9.5, React Router 6.x
 
-### UI/UX
-- **Bootstrap 5.x** - Framework CSS responsivo
-- **ApexCharts** - Biblioteca de gráficos interativos
-- **CSS Modules** - Estilos componetizados
-- **Google Fonts** - Tipografia Ubuntu
+**UI/UX:**
+- Bootstrap 5.x, ApexCharts, CSS Modules
 
-### Desenvolvimento
-- **Axios** - Cliente HTTP
-- **Date-fns** - Manipulação de datas
-- **Cross-env** - Variáveis de ambiente multiplataforma
-- **ESLint** - Linting de código
+**Desenvolvimento:**
+- Axios, Date-fns, ESLint
 
-## ✨ Funcionalidades
+**🔐 Autenticação:** Login com JWT, mock para testes, validação de formulários
 
-### 🔐 Autenticação
-- ✅ Sistema de login com validação
-- ✅ Autenticação por token JWT
-- ✅ Sistema de mock para testes offline
-- ✅ Redirecionamento automático
-- ✅ Validação de formulários
+**📊 Dashboard:** Gráfico de barras, donut, tabela paginada, indicadores de risco
 
-### 📊 Dashboard
-- ✅ Gráfico de barras (Taxa de vulnerabilidades)
-- ✅ Gráfico donut (Distribuição de vulnerabilidades)
-- ✅ Tabela de dados paginada
-- ✅ Indicadores visuais de risco
-- ✅ Métricas em tempo real
+**📱 Responsividade:** Layout adaptativo (Mobile/Tablet/Desktop), tabela em cards
 
-### 📱 Responsividade
-- ✅ Layout adaptativo para todos os dispositivos
-- ✅ Tabela responsiva com modo cards (mobile)
-- ✅ Gráficos otimizados por tela
-- ✅ Navegação touch-friendly
-- ✅ Breakpoints: Mobile (< 768px), Tablet (768-1024px), Desktop (> 1024px)
-
-### 🎨 Interface
-- ✅ Design moderno e limpo
-- ✅ Paleta de cores consistente
-- ✅ Indicadores visuais de severidade
-- ✅ Animações suaves
-- ✅ Estados de loading e erro
-
-## 🛠️ Melhorias Implementadas
-
-### 📦 Modernização de Dependências
-```diff
-- React 17.0.2 → React 18.2.0
-- react-scripts 4.0.3 → 5.0.1
-- React Router v5 → v6
-- TypeScript 4.9.5 (atualizado)
-- Axios 1.12.2 (atualizado)
-```
-
-### 🔧 Correções Técnicas
-- ✅ **Vulnerabilidades**: Reduzidas de 137 para 1
-- ✅ **Build**: Compatibilidade com Node.js 22
-- ✅ **OpenSSL**: Problema resolvido
-- ✅ **Yarn**: Dependência removida
-- ✅ **TypeScript**: Erros de tipo corrigidos
-
-### 🎯 Migração React Router v6
-```javascript
-// Antes (v5)
-<Switch>
-  <Redirect from="/" to="/home" />
-  <Route path="/signin" component={SignIn} />
-</Switch>
-
-// Depois (v6)
-<Routes>
-  <Route path="/" element={<Navigate to="/home" />} />
-  <Route path="/signin" element={<SignIn />} />
-</Routes>
-```
-
-### 🔄 Modernização de Componentes
-- ✅ **SignIn**: Class → Functional Component com hooks
-- ✅ **useNavigate**: Substituiu `withRouter`
-- ✅ **React 18**: Migração para `createRoot`
-- ✅ **Hooks**: useState, useEffect, useNavigate
-
-### 🗄️ Sistema de Mock Avançado
-- ✅ **287 assets** fictícios para testes
-- ✅ **Paginação real** com 3 páginas
-- ✅ **Dados temporais** consistentes
-- ✅ **Fallback automático** quando API indisponível
-- ✅ **Multiple endpoints** simulados
+**🎨 Interface:** Design moderno, paleta consistente, animações suaves
 
 ## 📥 Instalação
 
@@ -139,6 +58,7 @@ npm start
 ## ⚙️ Configuração
 
 ### Variáveis de Ambiente
+
 Crie um arquivo `.env` na raiz do projeto:
 
 ```env
@@ -150,11 +70,12 @@ REACT_APP_BACKEND_URL=https://sua-api.herokuapp.com
 ```
 
 ### ⚠️ Mixed Content Error (HTTPS)
-Se você está vendo o erro "Mixed Content" no Vercel ou outra plataforma HTTPS:
 
-1. **Configure uma API HTTPS**: Use Heroku, Railway, ou AWS com certificado SSL
-2. **Variável de ambiente**: Configure `REACT_APP_BACKEND_URL` com URL HTTPS
-3. **Fallback automático**: O sistema usa dados mock quando a API não responde
+Se você vê erro "Mixed Content" no Vercel:
+
+1. **Configure uma API HTTPS:** Use Heroku, Railway, ou AWS
+2. **Variável de ambiente:** Configure `REACT_APP_BACKEND_URL` com URL HTTPS  
+3. **Fallback automático:** Sistema usa dados mock quando API não responde
 
 ```bash
 # Configure no Vercel
@@ -163,6 +84,67 @@ vercel env add REACT_APP_BACKEND_URL
 # Ou no arquivo .env.production
 echo "REACT_APP_BACKEND_URL=https://sua-api.com" > .env.production
 ```
+
+### Credenciais de Teste
+
+```javascript
+// Usuário Admin
+Email: admin@empresa.com
+Senha: admin123
+
+// Usuário Comum
+Email: user@empresa.com  
+Senha: user123
+```
+
+## 🚀 Deploy
+
+# Inicie o servidor de desenvolvimento
+npm start
+```
+
+## ⚙️ Configuração
+
+### Variáveis de Ambiente
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+# Para desenvolvimento local
+REACT_APP_BACKEND_URL=http://localhost:8080
+
+# Para produção (HTTPS obrigatório)
+REACT_APP_BACKEND_URL=https://sua-api.herokuapp.com
+```
+
+### ⚠️ Solucionando Mixed Content Error
+
+**Erro comum**: "Mixed Content" em plataformas HTTPS (Vercel, Netlify)
+
+**Causa**: Navegadores bloqueiam requisições HTTP em sites HTTPS por segurança.
+
+**🔧 Soluções:**
+
+1. **API HTTPS**: Configure uma API com certificado SSL
+   - Heroku, Railway, AWS, Google Cloud
+   - Configure `REACT_APP_BACKEND_URL=https://sua-api.com`
+
+2. **Vercel Environment Variables**:
+   ```bash
+   vercel env add REACT_APP_BACKEND_URL
+   # Valor: https://sua-api-backend.herokuapp.com
+   ```
+
+3. **Arquivo .env.production**:
+   ```bash
+   echo "REACT_APP_BACKEND_URL=https://sua-api.com" > .env.production
+   ```
+
+4. **Fallback Automático**: 
+   - Sistema detecta quando API não responde
+   - Ativa automaticamente dados mock para demonstração
+   - Usuário vê dashboard funcionando normalmente
+
+**✅ Resultado**: Dashboard funciona em HTTPS com dados mock enquanto API não estiver disponível.
 
 ### Configuração da API
 O projeto está configurado para funcionar com fallback automático:
@@ -179,22 +161,28 @@ catch (error) {
 
 ## 🧪 Desenvolvimento Offline
 
-### Credenciais de Teste
-O sistema inclui usuários mock para desenvolvimento:
+### 🔐 Credenciais de Teste
+
+O sistema inclui usuários mock para desenvolvimento local:
 
 ```javascript
-// Usuário Admin
+// 👤 Usuário Administrador
 Email: admin@empresa.com
 Senha: admin123
+Permissões: Acesso completo ao dashboard
 
-// Usuário Comum  
+// 👤 Usuário Comum  
 Email: user@empresa.com
 Senha: user123
+Permissões: Visualização básica
 
-// Usuário Análise
+// 👤 Usuário Análise
 Email: analyst@empresa.com
 Senha: analyst123
+Permissões: Relatórios avançados
 ```
+
+> 💡 **Dica**: Estas credenciais funcionam apenas em desenvolvimento com dados mock.
 
 ### Mock APIs Disponíveis
 - `mockDashboardAPI.getAssets()` - Estatísticas gerais
