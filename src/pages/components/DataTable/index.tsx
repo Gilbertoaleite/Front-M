@@ -1,4 +1,3 @@
-import axios from "axios";
 import Pagination from "pages/components/Pagination";
 import { useEffect, useState } from "react";
 import { ListPage } from "types/list";
@@ -22,7 +21,7 @@ const DataTable = () => {
         const fetchData = async () => {
             try {
                 // Tenta usar a API real
-                const response = await axios.get(`${api}/api/assets?page=${activePage}`);
+                const response = await api.get(`/api/assets?page=${activePage}`);
                 setPage(response.data);
             } catch (error) {
                 console.log('API não disponível, usando dados mock para tabela');

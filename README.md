@@ -142,8 +142,26 @@ npm start
 Crie um arquivo `.env` na raiz do projeto:
 
 ```env
-REACT_APP_API_URL=http://localhost:8080
-REACT_APP_VERSION=1.0.0
+# Para desenvolvimento local
+REACT_APP_BACKEND_URL=http://localhost:8080
+
+# Para produção (HTTPS obrigatório)
+REACT_APP_BACKEND_URL=https://sua-api.herokuapp.com
+```
+
+### ⚠️ Mixed Content Error (HTTPS)
+Se você está vendo o erro "Mixed Content" no Vercel ou outra plataforma HTTPS:
+
+1. **Configure uma API HTTPS**: Use Heroku, Railway, ou AWS com certificado SSL
+2. **Variável de ambiente**: Configure `REACT_APP_BACKEND_URL` com URL HTTPS
+3. **Fallback automático**: O sistema usa dados mock quando a API não responde
+
+```bash
+# Configure no Vercel
+vercel env add REACT_APP_BACKEND_URL
+
+# Ou no arquivo .env.production
+echo "REACT_APP_BACKEND_URL=https://sua-api.com" > .env.production
 ```
 
 ### Configuração da API

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { AssetList } from 'types/list';
@@ -17,7 +16,7 @@ const DonutChart = () => {
         const fetchData = async () => {
             try {
                 // Tenta usar a API real
-                const response = await axios.get(`${api}/api/dashboard/charts/top-assets`);
+                const response = await api.get('/api/dashboard/charts/top-assets');
                 const data = response.data as AssetList[];
                 const myLabels = data.map((x) => x.host);
                 const mySeries = data.map((x) => x.vuln_count);
